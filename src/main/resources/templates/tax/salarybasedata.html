@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>网站后台管理</title>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+* {
+	font-family: 微软雅黑；
+}
+</style>
+<style type="text/css">
+@media ( min-width : 768px) {
+	#slider_sub {
+		width: 250px;
+		margin-top: 50px;
+		position: absolute;
+		z-index: 1;
+		height: 600px;
+	}
+	.mysearch {
+		margin: 10px 0;
+	}
+	.page_main {
+		margin-left: 251px;
+	}
+}
+</style>
+</head>
+
+<body>
+	<!-- 导航条  -->
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#slider_sub">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a href="#" class="navbar-brand"><b>工资管理系统</b></a>
+		</div>
+		<ul class="nav navbar-nav navbar-right" style="margin-right: 25px;">
+			<li><a href="#"><span class="badge"
+					style="background: #C12E2A;">23</span></a></li>
+			<li><a href="#"><span class="glyphicon glyphicon-off"></span>&nbsp;退出</a>
+			</li>
+		</ul>
+
+		<!--    侧边栏-->
+		<div class="navbar-default navbar-collapse" id="slider_sub">
+			<ul class="nav">
+				<li>
+					<!--搜索-->
+					<div class="input-group mysearch">
+						<input type="text" class="form-control" /> <span
+							class="input-group-btn">
+							<button type="button" class="btn btn-default">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</span>
+					</div>
+				</li>
+				<li><a href="#sub1" data-toggle="collapse">工资管理<span
+						class="glyphicon glyphicon-chevron-right pull-right"></a>
+					<ul id="sub1" class="nav collapse">
+						<li><a href="#"><span
+								class="glyphicon glyphicon-asterisk"></span>&nbsp;查询工资信息</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;修改工资信息</a>
+						</li>
+						<li><a href="#"><span
+								class="glyphicon glyphicon-list-alt"></span>&nbsp;增加工资信息</a></li>
+						<li><a href="#"><span
+								class="glyphicon glyphicon-remove-circle"></span>&nbsp;删除工资信息</a></li>
+					</ul></li>
+				<li><a href="#sub2" data-toggle="collapse">用户管理<span
+						class="glyphicon glyphicon-chevron-right pull-right"></a>
+					<ul id="sub2" class="nav collapse">
+						<li><a href="#"><span
+								class="glyphicon glyphicon-asterisk"></span>&nbsp;查询用户</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;修改用户</a>
+						</li>
+						<li><a href="#"><span
+								class="glyphicon glyphicon-list-alt"></span>&nbsp;增加用户</a></li>
+						<li><a href="#"><span
+								class="glyphicon glyphicon-remove-circle"></span>&nbsp;删除用户</a></li>
+					</ul></li>
+				<li><a href="#sub3" data-toggle="collapse">角色管理<span
+						class="glyphicon glyphicon-chevron-right pull-right"></a>
+					<ul id="sub3" class="nav collapse">
+						<li><a href="#"><span
+								class="glyphicon glyphicon-asterisk"></span>&nbsp;系统管理</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;管理员管理</a>
+						</li>
+						<li><a href="#"><span
+								class="glyphicon glyphicon-list-alt"></span>&nbsp;日志信息</a></li>
+						<li><a href="#"><span
+								class="glyphicon glyphicon-remove-circle"></span>&nbsp;退出</a></li>
+					</ul></li>
+				<li><a href="#sub4" data-toggle="collapse">新闻功能<span
+						class="glyphicon glyphicon-chevron-right pull-right"></a>
+					<ul id="sub4" class="nav collapse">
+						<li><a href="#"><span
+								class="glyphicon glyphicon-asterisk"></span>&nbsp;系统管理</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;管理员管理</a>
+						</li>
+						<li><a href="#"><span
+								class="glyphicon glyphicon-list-alt"></span>&nbsp;日志信息</a></li>
+						<li><a href="#"><span
+								class="glyphicon glyphicon-remove-circle"></span>&nbsp;退出</a></li>
+					</ul></li>
+
+			</ul>
+
+		</div>
+
+	</nav>
+	<!--   主体表格部分-->
+	<div class="page_main" style="margin-top: -10px;">
+<!-- 		<ol class="breadcrumb">
+			<li><a href="#">管理首页</a></li>
+			<li><a href="#">栏目</a></li>
+			<li class="active">增加栏目</li>
+		</ol>
+
+
+ -->
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">最新数据</div>
+					<div class="panel-body ">
+						<table class="table table-bordered table-striped table-hover ">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>订单号</th>
+									<th>订单日期</th>
+									<th>总价</th>
+									<th>状态</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>0123456</td>
+									<td>2018-01-12 18:12:00</td>
+									<td>1234.00</td>
+									<td>出库</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>0123456</td>
+									<td>2018-01-12 18:12:00</td>
+									<td>1234.00</td>
+									<td>出库</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>0123456</td>
+									<td>2018-01-12 18:12:00</td>
+									<td>1234.00</td>
+									<td>出库</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>0123456</td>
+									<td>2018-01-12 18:12:00</td>
+									<td>1234.00</td>
+									<td>出库</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>0123456</td>
+									<td>2018-01-12 18:12:00</td>
+									<td>1234.00</td>
+									<td>出库</td>
+								</tr>
+								<tr>
+									<td>6</td>
+									<td>0123456</td>
+									<td>2018-01-12 18:12:00</td>
+									<td>1234.00</td>
+									<td>出库</td>
+								</tr>
+							</tbody>
+						</table>
+						<nav aria-label="Page navigation" class="pull-left">
+							<ul class="pagination" style="margin-top: -5px;">
+								<li><a href="#" aria-label="Previous"> <span
+										aria-hidden="true">上一页</span>
+								</a></li>
+								<li><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#" aria-label="Next"> <span
+										aria-hidden="true">下一页</span>
+								</a></li>
+							</ul>
+						</nav>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<!--row-->
+
+	</div>
+
+	</div>
+
+	</div>
+	<!--page_main-->
+
+	<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	<script src="js/jquery.min.js"></script>
+	<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	<script src="js/bootstrap.min.js"></script>
+</body>
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	<script src="js/jquery.min.js"></script>
+	<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	<script src="js/bootstrap.min.js"></script>
+
+</html>

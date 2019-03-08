@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>上传下载页面</title>
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+* {
+	font-family: 微软雅黑；
+}
+</style>
+
+</head>
+<body>
+	<div class="container">
+	
+	<div class="page-header">
+		<h3>文件交互</h3>
+	</div>
+		<!-- <input type="button" value="导出数据" onclick="download()"/> -->
+		<form action="exportall" method="post">
+			<input type="submit" value="导出数据" />
+		</form>
+
+		<hr />
+		<span th:text="Hello"></span>
+
+		<div class="btn-group" role="group" aria-label="...">
+			<button type="button" class="btn btn-default" onclick="exportall()">下载数据</button>
+			<button type="button" class="btn btn-default" onclick="importall()">上传数据</button>
+		</div>
+
+		<hr />
+		<form action="importall" method="post" enctype="multipart/form-data"
+			class="form-horizontal" >
+			<div class="form-group">
+				上传文件：</label> <input type="file" name="filename">
+			</div>
+			<input class="btn btn-default" type="submit" value="提交">
+		</form>
+	</div>
+</body>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	function exportall() {
+		var url = "exportall";
+		window.open(url);
+	}
+
+	function importall() {
+		var url = "importall";
+		window.open(url);
+	}
+</script>
+</html>
