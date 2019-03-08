@@ -14,6 +14,7 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,10 +32,10 @@ public class TaxController {
     private ITaxService iTaxService;
     @Autowired
     private IDeptService iDeptService;
-    /*@RequestMapping("/taxdata")
-    public String getsalarybasedatapage() {
-        return "salarybasedata";
-    }*/
+    @RequestMapping("/taxdata")
+    public String gettaxdatapage() {
+        return "tax/taxdata";
+    }
     @RequestMapping("/export")
     public String importAndExport() {
         return "tax/export";
@@ -47,7 +48,7 @@ public class TaxController {
     }
 
     @RequestMapping("/importall")
-    public String importall(MultipartFile filename) throws Exception {
+    public String importall(MultipartFile filename,Model model) throws Exception {
         // 獲取流對象
         // MultipartFile 的filename必須和input的name屬性名稱一致
         InputStream is = filename.getInputStream();
@@ -120,38 +121,18 @@ public class TaxController {
             String s = filename.getOriginalFilename().toString();
             tax.setDept(s);
             //创建时间	creatdate
-            tax.setCreatdate(new SimpleDateFormat("yyyy-MM-dd HH:MM:SS").format(new Date()));
-            List<Tax> taxes = iTaxService.selectList(new EntityWrapper<Tax>());
+            tax.setCreatdate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
            if(null==iTaxService.selectMap(new EntityWrapper<Tax>()
                    .eq("zhengzhaohaoma",zhengzhaohaoma))){
-
+                this.iTaxService.insert(tax);
+           }else{
+               this.iTaxService.update(tax,new EntityWrapper<Tax>()
+               .eq("zhengzhaohaoma",zhengzhaohaoma));
            }
-                /*
-                 * if (sheet.getRow(i).getCell(5).getStringCellValue() !=
-                 * null) { // 出生年月 salarybasedata.setChushengnianyue( new
-                 * SimpleDateFormat("yyyy-MM-dd").parse(sheet.getRow(i).
-                 * getCell(5).getStringCellValue())); } if
-                 * (sheet.getRow(i).getCell(6).getStringCellValue() != null)
-                 * { // 参加工作时间 salarybasedata.setCanjiagongzuoshijian( new
-                 * SimpleDateFormat("yyyy-MM-dd").parse(sheet.getRow(i).
-                 * getCell(6).getStringCellValue())); } if
-                 * (sheet.getRow(i).getCell(21).getStringCellValue() !=
-                 * null) { // 最近一次岗位调整时间
-                 * salarybasedata.setZuijingangweitiaozhengshijian( new
-                 * SimpleDateFormat("yyyy-MM-dd").parse(sheet.getRow(i).
-                 * getCell(21).getStringCellValue())); }
-                 */
-                // sheet.getRow(i).getCell(15).setCellType(CellType.STRING);
-                //  salarybasedata.setYuangdangci(Integer.parseInt(sheet.getRow(i).getCell(15).getStringCellValue()));
-                // 避免number數據轉string類型出錯，先設置cell內容類型
-                // sheet.getRow(i).getCell(2).setCellType(CellType.STRING);
-                // 字符串轉int類型
-                // salarybasedata.setAge(Integer.parseInt(sheet.getRow(i).getCell(2).getStringCellValue()));
-                // 調用addUser方法將對象數據傳入數據庫
-                //this.salaryBaseDataService.addSalarybasedata(salarybasedata);
             }
             // 返回成功頁面
-            return "tax/sussecc";
+            model.addAttribute("taxlist",this.iTaxService.selectList(new EntityWrapper<Tax>()));
+            return "tax/taxdata";
         }
 
     }
